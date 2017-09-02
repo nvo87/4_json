@@ -14,19 +14,19 @@ def pretty_print_json(data):
     return json.dumps(data, sort_keys=True, indent=4, ensure_ascii=False)
 
 
-def pretty_print_json_to_file(json_str, filename):
-    with io.open(filename, 'w', encoding='utf-8') as f_obj:
-        json.dump(json_str, f_obj, sort_keys=True,
+def pretty_print_json_to_file(data, output_filepath):
+    with io.open(output_filepath, 'w', encoding='utf-8') as f_obj:
+        json.dump(data, f_obj, sort_keys=True,
                   indent=4, ensure_ascii=False)
 
 
 if __name__ == '__main__':
     # получаем имя файла из аргумента указанного при вызове в консоли
     filepath = sys.argv[1]
-    json_str = load_data(filepath)
+    json_without_format = load_data(filepath)
 
     if sys.argv[2] == '-f':
-        pretty_print_json_to_file(json_str, 'output.json')
+        pretty_print_json_to_file(json_without_format, 'output.json')
 
-    json_pretty = pretty_print_json(json_str) 
-    print(json_pretty)
+    json_in_pretty_format = pretty_print_json(json_without_format)
+    print(json_in_pretty_format)
