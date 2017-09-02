@@ -10,13 +10,13 @@ def load_data(filepath):
         return json.load(f_obj)
 
 
-def pretty_print_json(data):
-    return json.dumps(data, sort_keys=True, indent=4, ensure_ascii=False)
+def get_json_in_pretty_format(json_raw_string):
+    return json.dumps(json_raw_string, sort_keys=True, indent=4, ensure_ascii=False)
 
 
-def pretty_print_json_to_file(data, output_filepath):
+def pretty_print_json_to_file(json_raw_string, output_filepath):
     with io.open(output_filepath, 'w', encoding='utf-8') as f_obj:
-        json.dump(data, f_obj, sort_keys=True,
+        json.dump(json_raw_string, f_obj, sort_keys=True,
                   indent=4, ensure_ascii=False)
 
 
@@ -28,5 +28,5 @@ if __name__ == '__main__':
     if sys.argv[2] == '-f':
         pretty_print_json_to_file(json_without_format, 'output.json')
 
-    json_in_pretty_format = pretty_print_json(json_without_format)
+    json_in_pretty_format = get_json_in_pretty_format(json_without_format)
     print(json_in_pretty_format)
