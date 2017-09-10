@@ -24,7 +24,11 @@ def get_arguments_from_command_line(arg_number):
         return sys.argv[arg_number]
 
 if __name__ == '__main__':
-    filepath = get_arguments_from_command_line(1)
+    filepath_arg_position = 1
+    write_file_flag = '-f'
+    write_file_flag_arg_position = 2
+
+    filepath = get_arguments_from_command_line(filepath_arg_position)
     if filepath is None:
         print("You have to type json source filepath")
         sys.exit()
@@ -38,8 +42,8 @@ if __name__ == '__main__':
     json_in_pretty_format = get_json_in_pretty_format(json_without_format)
     print(json_in_pretty_format)
 
-    write_to_file_flag = get_arguments_from_command_line(2)
-    if write_to_file_flag == '-f':
+    write_to_file_flag = get_arguments_from_command_line(write_file_flag_arg_position)
+    if write_to_file_flag == write_file_flag:
         pretty_print_json_to_file(json_without_format, 'output.json')
     else:
         print("Unknown flag. If you want to output result to file, use -f key.")
